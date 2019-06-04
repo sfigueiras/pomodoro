@@ -1,15 +1,15 @@
 import React from 'react'
-import prettyTime from './utils/prettyTime'
+import prettyTime from '../../utils/prettyTime'
 
 class Timer extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = this.initialState()    
+    this.state = this.initialState()   
 
     this.timer = setInterval(function () {
       let time = this.state.time
-      if (time == 0) {
+      if (time === 0) {
         this.props.onFinish()
         clearInterval(this.timer)
       } else if (this.state.timerStarted) {
@@ -53,3 +53,4 @@ class Timer extends React.Component {
 }
 
 export default Timer
+
