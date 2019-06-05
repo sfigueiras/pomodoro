@@ -7,7 +7,7 @@ export const timer = (state = {
     case TIMER_STARTED:
       return {
         ...state,
-        time: action.time,
+        time: action.time || state.time,
         timerType: action.timerType,
         active: true,
         ticks: 0,
