@@ -11,7 +11,7 @@ import TimerContainer from './timer/components/TimerContainer'
 class App extends React.Component {
   componentDidMount () {
     this.props.dispatch(startTimer({
-      time: 1000 * 3,
+      time: 1000 * 10,
       timerType: POMODORO
     }))
   }

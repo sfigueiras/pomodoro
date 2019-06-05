@@ -8,12 +8,12 @@ class Timer extends React.Component {
   }
 
   render () {
-    const { timerActive, onToggle, time } = this.props
+    const { timerActive, onToggle, onRestart, time } = this.props
     return (
       <div>
         <p>{ prettyTime(time) }</p>
         <button onClick={onToggle}>{this.buttonMessage(timerActive)}</button>
-        <button onClick={() => {}}>Restart</button>
+        <button onClick={onRestart}>Restart</button>
       </div>
     )
   }

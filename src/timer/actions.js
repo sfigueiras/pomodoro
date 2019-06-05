@@ -1,17 +1,12 @@
 import * as actionTypes from './actionTypes'
 
-export const timerToggled = () => ({
-  type: actionTypes.TIMER_TOGGLED
-})
-
 export const timerFinished = () => ({
   type: actionTypes.TIMER_FINISHED,
   active: false
 })
 
 export const timerRestarted = () => ({
-  type: actionTypes.TIMER_RESTARTED,
-  active: false
+  type: actionTypes.TIMER_RESTARTED
 })
 
 export const timerStarted = (timerSettings) => ({
@@ -27,18 +22,31 @@ export const timerTick = () => ({
   type: actionTypes.TIMER_TICK
 })
 
+export const timerPaused = () => ({
+  type: actionTypes.TIMER_PAUSED
+})
+
+export const timerResumed = () => ({
+  type: actionTypes.TIMER_RESUMED
+})
+
 let timerInterval = null
 
-export const startTimer = (timerSettings) => (dispatch) => {
+export const startTimer = (timerSettings) => (dispatch, getState) => {
+  const { ticks } = getState().timer
   clearInterval(timerInterval)
   timerInterval = setInterval(() => dispatch(timerTickIfNeeded()), 1000)
-  dispatch(timerStarted(timerSettings))
+  if (!ticks || ticks === 0) {
+    dispatch(timerStarted(timerSettings))
+  } else {
+    dispatch(timerResumed())
+  }
   dispatch(timerTickIfNeeded())
 }
 
-export const stopTimer = () => {
+export const stopTimer = (finished = true) => {
   clearInterval(timerInterval)
-  return timerFinished()
+  return finished ? timerFinished() : timerPaused()
 }
 
 export const timerTickIfNeeded = () => (dispatch, getState) => {
@@ -50,3 +58,13 @@ export const timerTickIfNeeded = () => (dispatch, getState) => {
     dispatch(timerTick())
   }
 }
+
+export const toggleTimer = () => (dispatch, getState) => {
+  const { active } = getState().timer
+  if (active) {
+    dispatch(stopTimer(false))
+  } else {
+    dispatch(startTimer())
+  }
+}
+

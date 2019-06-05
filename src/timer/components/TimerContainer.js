@@ -1,22 +1,23 @@
 import React from 'react'
 import Timer from './Timer'
 import { connect } from 'react-redux'
-import { timerToggled, timerFinished } from '../actions'
+import { toggleTimer, timerRestarted, timerFinished } from '../actions'
 import PropTypes from 'prop-types'
 
 class TimerContainer extends React.Component {
   constructor (props) {
     super(props)
     this.onTimerToggled = this.onTimerToggled.bind(this)
-    this.onTimerFinished = this.onTimerFinished.bind(this)
+    this.onTimerRestart = this.onTimerRestart.bind(this)
   }
 
   onTimerToggled () {
-    this.props.dispatch(timerToggled())
+    this.props.dispatch(toggleTimer())
   }
 
-  onTimerFinished () {
-    this.props.dispatch(timerFinished())
+  onTimerRestart () {
+    debugger
+    this.props.dispatch(timerRestarted())
   }
 
   render () {
@@ -27,7 +28,7 @@ class TimerContainer extends React.Component {
           time={time}
           timerActive={timerActive}
           onToggle={this.onTimerToggled}
-          onFinish={this.onTimerFinished}
+          onRestart={this.onTimerRestart}
         />
       </div>
     )
