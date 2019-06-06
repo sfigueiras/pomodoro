@@ -2,6 +2,7 @@ import React from 'react'
 import Timer from './Timer'
 import { connect } from 'react-redux'
 import { toggleTimer, timerRestarted, timerFinished } from '../actions'
+import { getElapsedPrettyTime } from '../selectors'
 import PropTypes from 'prop-types'
 
 class TimerContainer extends React.Component {
@@ -16,7 +17,6 @@ class TimerContainer extends React.Component {
   }
 
   onTimerRestart () {
-    debugger
     this.props.dispatch(timerRestarted())
   }
 
@@ -43,7 +43,7 @@ TimerContainer.propTypes = {
 const mapStateToProps = (state) => {
   return { 
     timerActive: state.timer.active,
-    time: state.timer.time - (state.timer.ticks * 1000)
+    time: getElapsedPrettyTime(state) 
   }
 }
 

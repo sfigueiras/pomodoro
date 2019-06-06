@@ -9,6 +9,7 @@ import {
 
 export const timer = (state = {
   active: false,
+  ticks: 0
 }, action) => {
   switch(action.type) {
     case TIMER_STARTED:

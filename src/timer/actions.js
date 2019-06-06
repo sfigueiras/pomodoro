@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes'
 import { NEXT_UNIT } from '../scheduler/actionTypes'
+import { isTimerFinished } from './selectors'
 
 export const timerRestarted = () => ({
   type: actionTypes.TIMER_RESTARTED
@@ -42,28 +43,30 @@ let timerInterval = null
 export const startTimer = (timerSettings) => (dispatch, getState) => {
   const { ticks } = getState().timer
 
-  clearInterval(timerInterval)
-  timerInterval = setInterval(() => dispatch(timerTickIfNeeded()), 1000)
+  startTicking(() => dispatch(timerTickIfNeeded()))
 
-  if (!ticks || ticks === 0) {
+  if (ticks === 0) {
     dispatch(timerStarted(timerSettings))
   } else {
     dispatch(timerResumed())
   }
+
   dispatch(timerTickIfNeeded())
 }
 
-export const stopTimer = (finished = true) => {
+function startTicking (onTick) {
+  stopTicking()
+  timerInterval = setInterval(onTick, 1000)
+}
+
+function stopTicking () {
   clearInterval(timerInterval)
-  return finished ? timerFinished() : timerPaused()
 }
 
 export const timerTickIfNeeded = () => (dispatch, getState) => {
-  const { ticks, time } = getState().timer
-  const timeElapsed = ticks * 1000
-
-  if (timeElapsed === time) {
-    dispatch(stopTimer())
+  if (isTimerFinished(getState())) {
+    stopTicking()
+    dispatch(timerFinished())
   } else {
     dispatch(timerTick())
   }
@@ -73,7 +76,8 @@ export const toggleTimer = () => (dispatch, getState) => {
   const { active } = getState().timer
 
   if (active) {
-    dispatch(stopTimer(false))
+    stopTicking()
+    dispatch(timerPaused())
   } else {
     dispatch(startTimer())
   }

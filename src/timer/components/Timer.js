@@ -1,5 +1,4 @@
 import React from 'react'
-import prettyTime from '../../utils/prettyTime'
 
 class Timer extends React.Component {
 
@@ -11,7 +10,7 @@ class Timer extends React.Component {
     const { timerActive, onToggle, onRestart, time } = this.props
     return (
       <div>
-        <p>{ prettyTime(time) }</p>
+        <p>{ time }</p>
         <button onClick={onToggle}>{this.buttonMessage(timerActive)}</button>
         <button onClick={onRestart}>Restart</button>
       </div>
