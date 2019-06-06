@@ -4,16 +4,13 @@ import  PropTypes  from 'prop-types'
 
 import './App.css';
 
-import { POMODORO } from './timer/timerTypes'
 import { startTimer } from './timer/actions'
 import TimerContainer from './timer/components/TimerContainer'
+import { getCurrentUnit } from './scheduler/selectors'
 
 class App extends React.Component {
   componentDidMount () {
-    this.props.dispatch(startTimer({
-      time: 1000 * 10,
-      timerType: POMODORO
-    }))
+    this.props.dispatch(startTimer(this.props.currentUnit))
   }
 
   render () {
@@ -29,4 +26,10 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired
 }
 
-export default connect() (App)
+const mapStateToProps = (state) => {
+  return {
+    currentUnit: getCurrentUnit(state)
+  }
+}
+
+export default connect(mapStateToProps) (App)

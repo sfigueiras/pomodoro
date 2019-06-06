@@ -1,9 +1,5 @@
 import * as actionTypes from './actionTypes'
-
-export const timerFinished = () => ({
-  type: actionTypes.TIMER_FINISHED,
-  active: false
-})
+import { NEXT_UNIT } from '../scheduler/actionTypes'
 
 export const timerRestarted = () => ({
   type: actionTypes.TIMER_RESTARTED
@@ -30,12 +26,25 @@ export const timerResumed = () => ({
   type: actionTypes.TIMER_RESUMED
 })
 
+export const timerFinished = () => (dispatch) => {
+  dispatch({
+    type: actionTypes.TIMER_FINISHED,
+    active: false
+  })
+  //TODO: extract as scheduler/actionCreator
+  dispatch({
+    type: NEXT_UNIT
+  })
+}
+
 let timerInterval = null
 
 export const startTimer = (timerSettings) => (dispatch, getState) => {
   const { ticks } = getState().timer
+
   clearInterval(timerInterval)
   timerInterval = setInterval(() => dispatch(timerTickIfNeeded()), 1000)
+
   if (!ticks || ticks === 0) {
     dispatch(timerStarted(timerSettings))
   } else {
@@ -52,6 +61,7 @@ export const stopTimer = (finished = true) => {
 export const timerTickIfNeeded = () => (dispatch, getState) => {
   const { ticks, time } = getState().timer
   const timeElapsed = ticks * 1000
+
   if (timeElapsed === time) {
     dispatch(stopTimer())
   } else {
@@ -61,6 +71,7 @@ export const timerTickIfNeeded = () => (dispatch, getState) => {
 
 export const toggleTimer = () => (dispatch, getState) => {
   const { active } = getState().timer
+
   if (active) {
     dispatch(stopTimer(false))
   } else {

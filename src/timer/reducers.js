@@ -1,4 +1,11 @@
-import { TIMER_STARTED, TIMER_RESUMED, TIMER_PAUSED, TIMER_RESTARTED, TIMER_TICK, TIMER_FINISHED } from './actionTypes' 
+import { 
+  TIMER_STARTED, 
+  TIMER_RESUMED, 
+  TIMER_PAUSED, 
+  TIMER_RESTARTED, 
+  TIMER_TICK, 
+  TIMER_FINISHED 
+} from './actionTypes' 
 
 export const timer = (state = {
   active: false,
