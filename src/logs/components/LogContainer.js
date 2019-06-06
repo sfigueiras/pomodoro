@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import LogsList from './LogsList'
+import LogsList from './LogList'
 import { updateLog, clearAll } from '../actions'
 import { getPrettifiedLogs } from '../selectors'
 
