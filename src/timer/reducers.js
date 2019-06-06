@@ -4,12 +4,14 @@ import {
   TIMER_PAUSED, 
   TIMER_RESTARTED, 
   TIMER_TICK, 
-  TIMER_FINISHED 
+  TIMER_FINISHED,
+  TIMER_INITIALIZED
 } from './actionTypes' 
 
 export const timer = (state = {
   active: false,
-  ticks: 0
+  ticks: 0,
+  time: 0
 }, action) => {
   switch(action.type) {
     case TIMER_STARTED:
@@ -44,6 +46,11 @@ export const timer = (state = {
       return {
         ...state,
         ticks: state.ticks + 1
+      }
+    case TIMER_INITIALIZED:
+      return {
+        ...state,
+        ...action
       }
     default:
       return state

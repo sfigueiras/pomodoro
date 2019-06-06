@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import  PropTypes  from 'prop-types'
 
 import './App.css';
 
 import TimerContainer from './timer/components/TimerContainer'
-import { getCurrentUnit } from './scheduler/selectors'
-
+import { initializeTimer } from './timer/actions'
 import LogContainer from './logs/components/LogContainer'
 
 class App extends React.Component {
+  componentDidMount () {
+    this.props.initializeTimer()
+  }
+
   render () {
     return (
       <div className="App">
@@ -20,14 +22,10 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  dispatch: PropTypes.func.isRequired
-}
-
-const mapStateToProps = (state) => {
+const mapDispatchToProps = dispatch => {
   return {
-    currentUnit: getCurrentUnit(state)
+    initializeTimer: () => dispatch(initializeTimer())
   }
 }
 
-export default connect(mapStateToProps) (App)
+export default connect(null, mapDispatchToProps) (App)

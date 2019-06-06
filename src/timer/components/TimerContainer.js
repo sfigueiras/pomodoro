@@ -1,34 +1,20 @@
 import React from 'react'
 import Timer from './Timer'
 import { connect } from 'react-redux'
-import { toggleTimer, timerRestarted, timerFinished } from '../actions'
+import { toggleTimer, timerRestarted } from '../actions'
 import { getElapsedPrettyTime } from '../selectors'
 import PropTypes from 'prop-types'
 
 class TimerContainer extends React.Component {
-  constructor (props) {
-    super(props)
-    this.onTimerToggled = this.onTimerToggled.bind(this)
-    this.onTimerRestart = this.onTimerRestart.bind(this)
-  }
-
-  onTimerToggled () {
-    this.props.dispatch(toggleTimer())
-  }
-
-  onTimerRestart () {
-    this.props.dispatch(timerRestarted())
-  }
-
   render () {
-    const { timerActive, time } = this.props
+    const { timerActive, time, onTimerToggled, onTimerRestart } = this.props
     return (
       <div>
         <Timer 
           time={time}
           timerActive={timerActive}
-          onToggle={this.onTimerToggled}
-          onRestart={this.onTimerRestart}
+          onToggle={onTimerToggled}
+          onRestart={onTimerRestart}
         />
       </div>
     )
@@ -36,16 +22,27 @@ class TimerContainer extends React.Component {
 }
 
 TimerContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  timerActive: PropTypes.bool.isRequired
+  timerActive: PropTypes.bool.isRequired, 
+  time: PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state) => {
+  const elapsedTime = getElapsedPrettyTime(state)
+
+  document.title = elapsedTime
+
   return { 
     timerActive: state.timer.active,
-    time: getElapsedPrettyTime(state) 
+    time: elapsedTime
   }
 }
 
-export default connect (mapStateToProps) (TimerContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    onTimerToggled: () => dispatch(toggleTimer()),
+    onTimerRestart: () => dispatch(timerRestarted())
+  }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (TimerContainer)
 
