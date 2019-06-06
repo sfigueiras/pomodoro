@@ -1,10 +1,11 @@
 import { NEXT_UNIT } from './actionTypes'
-import { startTimer } from '../timer/actions'
 import { getCurrentUnit } from './selectors'
-import { createEntry } from '../logs/actions'
+import { createLog } from '../logs/actions'
+import { startTimer } from '../timer/actions'
 
 export const nextUnit = () => (dispatch, getState) => {
   const currentEntry = getCurrentUnit(getState())
+
   dispatch({
     type: NEXT_UNIT
   })
@@ -14,6 +15,6 @@ export const nextUnit = () => (dispatch, getState) => {
   )
   
   dispatch(
-    createEntry(currentEntry)
+    createLog(currentEntry)
   )
 }

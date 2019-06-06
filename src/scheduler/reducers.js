@@ -5,7 +5,7 @@ export const scheduler = (state = {
   schedule: [
     {
       timerType: POMODORO,
-      time: 1000 * 5 //1000 * 60 * 25
+      time: 1000 * 2//1000 * 60 * 25
     },
     {
       timerType: BREAK,

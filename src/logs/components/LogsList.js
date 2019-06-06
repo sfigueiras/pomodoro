@@ -1,20 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import LogItem from './LogItem'
 
 function LogsList (props) {
-  const { logs } = props
+  const { logs, onLogUpdated } = props
 
   return (
     <div>
         <ul>
           { 
-            logs.map((log, index) => {
+            logs.map(log => {
               return (
-                <li key={index}>
-                  <p>{ log.time }</p>
-                  <p>{ log.timerType }</p>
-                  <p>{ log.description }</p>
-                </li>
+                <LogItem
+                  id={log.id}
+                  key={log.id}
+                  time={log.time}
+                  timerType={log.timerType}
+                  description={log.description}
+                  onUpdate={onLogUpdated} />
               )
             })
           }
