@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LogsList from './LogsList'
 import { updateLog, clearAll } from '../actions'
+import { getPrettifiedLogs } from '../selectors'
 
 class LogsContainer extends Component {
   onLogUpdated (event) {
@@ -32,7 +33,7 @@ class LogsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    logs: state.logs.logs
+    logs: getPrettifiedLogs(state)
   }
 }
 

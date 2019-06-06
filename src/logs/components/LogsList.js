@@ -15,8 +15,8 @@ function LogsList (props) {
                 <LogItem
                   id={log.id}
                   key={log.id}
-                  time={log.time}
-                  timerType={log.timerType}
+                  time={log.prettyTime}
+                  timerType={log.prettyTimerType}
                   description={log.description}
                   onUpdate={onLogUpdated} />
               )

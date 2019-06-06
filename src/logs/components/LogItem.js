@@ -14,7 +14,7 @@ class LogItem extends Component {
       <li key={ id }>
         <p>{ time }</p>
         <p>{ timerType }</p>
-        <input name="description" data-id={id} ref={description} onBlur={onUpdate}/>
+        <input name="description" defaultValue={description} data-id={id} ref={description} onBlur={onUpdate}/>
       </li>
     )
   }
