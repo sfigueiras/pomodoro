@@ -8,8 +8,11 @@ import { startTimer } from './timer/actions'
 import TimerContainer from './timer/components/TimerContainer'
 import { getCurrentUnit } from './scheduler/selectors'
 
+import LogsContainer from './logs/components/LogsContainer'
+
 class App extends React.Component {
   componentDidMount () {
+    // TODO: trigger start with NEXT_UNIT to unify timer logic
     this.props.dispatch(startTimer(this.props.currentUnit))
   }
 
@@ -17,6 +20,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <TimerContainer />
+        <LogsContainer />
       </div>
     );
   }
