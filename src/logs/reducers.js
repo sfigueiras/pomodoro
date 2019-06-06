@@ -1,4 +1,4 @@
-import { CREATE_LOG, UPDATE_LOG } from './actionTypes'
+import { CREATE_LOG, UPDATE_LOG, CLEAR_ALL_LOGS } from './actionTypes'
 import uuidv4 from '../utils/uuidv4'
 
 export const logs = (state = {
@@ -27,6 +27,11 @@ export const logs = (state = {
           { ...log, ...action.log } :
           log
         )
+      }
+    case CLEAR_ALL_LOGS:
+      return {
+        ...state,
+        logs: []
       }
     default:
       return state

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import LogItem from './LogItem'
 
 function LogsList (props) {
-  const { logs, onLogUpdated } = props
+  const { logs, onLogUpdated, handleClear } = props
 
   return (
     <div>
+      <button onClick={handleClear}>Clear all</button>
         <ul>
           { 
             logs.map(log => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LogsList from './LogsList'
-import { updateLog } from '../actions'
+import { updateLog, clearAll } from '../actions'
 
 class LogsContainer extends Component {
   onLogUpdated (event) {
@@ -14,12 +14,17 @@ class LogsContainer extends Component {
     ))
   }
 
+  handleClear () {
+    this.props.dispatch(clearAll())
+  }
+
   render () {
     const { logs } = this.props
     return (
       <LogsList
         logs={logs}
         onLogUpdated={this.onLogUpdated.bind(this)}
+        handleClear={this.handleClear.bind(this)}
       />
     )
   }
