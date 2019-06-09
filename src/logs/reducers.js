@@ -16,7 +16,8 @@ export const logs = (state = {
           ...state.logs,
           {
             id: uuidv4(),
-            ...log
+            ...log,
+            completedAt: Date.now()
           }
         ]
       }

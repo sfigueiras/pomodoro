@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.timer {
+  max-width: 150px;
+}
+
+.time {
+  font-size: xx-large;
+  margin: 10px;
+}
+
+.commands {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}

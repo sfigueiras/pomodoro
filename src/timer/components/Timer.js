@@ -1,18 +1,23 @@
 import React from 'react'
+import styles from './Timer.module.css'
 
 class Timer extends React.Component {
 
-  buttonMessage (timerActive) {
+  iMessage (timerActive) {
     return timerActive ? 'Pause' : 'Start'
   }
 
   render () {
     const { timerActive, onToggle, onRestart, time } = this.props
     return (
-      <div>
-        <p>{ time }</p>
-        <button onClick={onToggle}>{this.buttonMessage(timerActive)}</button>
-        <button onClick={onRestart}>Restart</button>
+      <div className={styles.container}>
+        <div className={styles.timer}>
+          <p className={styles.time}>{ time }</p>
+          <div className={styles.commands}>
+            <i onClick={onToggle} className={ 'fas ' + (timerActive ? 'fa-pause' : 'fa-play')  } />
+            <i onClick={onRestart} className="fas fa-stop" />
+          </div>
+        </div>
       </div>
     )
   }
