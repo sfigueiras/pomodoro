@@ -1,0 +1,33 @@
+.container {
+  padding: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.actions .title {
+  margin: 0;
+}
+
+.actions button {
+  background-color: transparent;
+  border: 1px solid firebrick;
+  color: firebrick;
+  padding: 5px;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+.actions button:active {
+  transform: translateX(10px) translateY(10px);
+}
+

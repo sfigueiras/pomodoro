@@ -1,2 +1,2 @@
 export const POMODORO = 'POMODORO'
-export const BREAK = 'BREAK'
+export const PAUSE = 'PAUSE'

@@ -44,10 +44,14 @@ export const timerFinished = () => dispatch => {
 let timerInterval = null
 
 export const initializeTimer = () => (dispatch, getState) => {
-  const { time } = getState().timer
+  const { time, active } = getState().timer
   if (time === 0) {
     dispatch(timerInitialized(getCurrentUnit(getState())))
     console.log('initializing timer with ' + getCurrentUnit(getState()))
+  }
+
+  if (active) {
+    dispatch(startTimer())
   }
 }
 
@@ -68,7 +72,6 @@ export const pauseTimer = () => dispatch => {
   dispatch(timerPaused())
 }
 
-
 export const timerTickIfNeeded = () => (dispatch, getState) => {
   if (isTimerFinished(getState())) {
     dispatch(timerFinished())
@@ -81,7 +84,6 @@ export const toggleTimer = () => (dispatch, getState) => {
   const { active } = getState().timer
 
   if (active) {
-    stopTicking()
     dispatch(pauseTimer())
   } else {
     dispatch(resumeTimer())

@@ -15,7 +15,7 @@ class Timer extends React.Component {
           <p className={styles.time}>{ time }</p>
           <div className={styles.commands}>
             <i onClick={onToggle} className={ 'fas ' + (timerActive ? 'fa-pause' : 'fa-play')  } />
-            <i onClick={onRestart} className="fas fa-stop" />
+            <i onClick={onRestart} className="fas fa-undo-alt" />
           </div>
         </div>
       </div>

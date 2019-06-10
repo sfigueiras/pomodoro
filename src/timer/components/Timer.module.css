@@ -19,3 +19,7 @@
   justify-content: space-around;
   margin-bottom: 10px;
 }
+
+.commands i {
+  cursor: pointer;
+}

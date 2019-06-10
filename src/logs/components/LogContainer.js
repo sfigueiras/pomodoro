@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LogsList from './LogList'
 import { updateLog, clearAll } from '../actions'
-import { getPrettifiedLogs } from '../selectors'
+import { getPrettifiedLogs, getGroupedByDateLogs } from '../selectors'
 
 class LogsContainer extends Component {
   onLogUpdated (event) {
@@ -20,10 +20,10 @@ class LogsContainer extends Component {
   }
 
   render () {
-    const { logs } = this.props
+    const { groupedLogs } = this.props
     return (
       <LogsList
-        logs={logs}
+        groupedLogs={groupedLogs}
         onLogUpdated={this.onLogUpdated.bind(this)}
         handleClear={this.handleClear.bind(this)}
       />
@@ -33,7 +33,7 @@ class LogsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    logs: getPrettifiedLogs(state)
+    groupedLogs: getGroupedByDateLogs(state)
   }
 }
 

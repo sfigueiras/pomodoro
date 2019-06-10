@@ -1,16 +1,26 @@
-import { POMODORO, BREAK } from '../timer/timerTypes'
+import { POMODORO, PAUSE } from '../timer/timerTypes'
 import { NEXT_UNIT } from './actionTypes'
+
+const pomodoro = minutes => ({
+  timerType: POMODORO,
+  time: 1000 * minutes
+})
+
+const pause = minutes => ({
+  timerType: PAUSE,
+  time: 1000 * minutes
+})
 
 export const scheduler = (state = {
   schedule: [
-    {
-      timerType: POMODORO,
-      time: 1000 * 2//1000 * 60 * 25
-    },
-    {
-      timerType: BREAK,
-      time: 1000 * 60 // 1000 * 60 * 25
-    }
+    pomodoro(0.1),
+    pause(0.1),
+    pomodoro(0.1),
+    pause(0.1),
+    pomodoro(0.1),
+    pause(0.1),
+    pomodoro(0.1),
+    pause(10)
   ],
   index: 0
 }, action) => {
