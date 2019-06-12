@@ -11,7 +11,7 @@
     return `${addLeadingZeros(minutes)}:${addLeadingZeros(seconds)}`
   }
 
-  function addLeadingZeros (number, unit=1) {
+  export function addLeadingZeros (number, unit=1) {
     return number > (unit * 10 - 1) ? number : zeros(unit) + number
   }
 

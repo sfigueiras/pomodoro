@@ -1,7 +1,7 @@
 import { NEXT_UNIT } from './actionTypes'
 import { getCurrentUnit } from './selectors'
 import { createLog } from '../logs/actions'
-import { startTimer } from '../timer/actions'
+import { initializeTimer } from '../timer/actions'
 
 export const nextUnit = () => (dispatch, getState) => {
   const currentEntry = getCurrentUnit(getState())
@@ -11,7 +11,7 @@ export const nextUnit = () => (dispatch, getState) => {
   })
 
   dispatch(
-    startTimer(currentEntry)
+    initializeTimer(currentEntry)
   )
   
   dispatch(

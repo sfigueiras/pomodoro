@@ -1,5 +1,6 @@
 .container {
   padding: 20px;
+  margin: 0 10%;
 }
 
 .list {
@@ -31,3 +32,8 @@
   transform: translateX(10px) translateY(10px);
 }
 
+@media (min-width: 640px) {
+  .container {
+    margin: 0 35vw;
+  }
+}

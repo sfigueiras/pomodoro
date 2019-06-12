@@ -1,15 +1,14 @@
 import * as actionTypes from './actionTypes'
 import { isTimerFinished } from './selectors'
 import { nextUnit } from '../scheduler/actions'
-import { getCurrentUnit } from '../scheduler/selectors'
+import { getCurrentUnit, getNextUnit } from '../scheduler/selectors'
 
 export const timerRestarted = () => ({
   type: actionTypes.TIMER_RESTARTED
 })
 
-export const timerStarted = (timerSettings) => ({
-  type: actionTypes.TIMER_STARTED,
-  ...timerSettings
+export const timerStarted = () => ({
+  type: actionTypes.TIMER_STARTED
 })
 
 export const timerStopped = () => ({
@@ -36,17 +35,17 @@ export const timerInitialized = (timerSettings) => ({
 export const timerFinished = () => dispatch => {
   dispatch({
     type: actionTypes.TIMER_FINISHED,
-    active: false
   })
   dispatch(nextUnit())
 }
 
 let timerInterval = null
 
-export const initializeTimer = () => (dispatch, getState) => {
-  const { time, active } = getState().timer
-  if (time === 0) {
-    dispatch(timerInitialized(getCurrentUnit(getState())))
+export const initializeTimer = timerSettings => (dispatch, getState) => {
+  const { time, active, ticks } = getState().timer
+  const timerFinished = ticks * 1000 === time
+  if (timerFinished) {
+    dispatch(timerInitialized({ ...getNextUnit(getState()), ticks: 0 }))
     console.log('initializing timer with ' + getCurrentUnit(getState()))
   }
 
@@ -55,10 +54,10 @@ export const initializeTimer = () => (dispatch, getState) => {
   }
 }
 
-export const startTimer = timerSettings => (dispatch, getState) => {
+export const startTimer = () => (dispatch, getState) => {
   startTicking(() => dispatch(timerTickIfNeeded()))
 
-  dispatch(timerStarted(getCurrentUnit(getState())))
+  dispatch(timerStarted())
   dispatch(timerTickIfNeeded())
 }
 

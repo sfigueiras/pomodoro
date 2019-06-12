@@ -5,7 +5,7 @@ import groupBy from '../utils/groupBy'
 import formatDate from '../utils/formatDate'
 import hourFromDate from '../utils/hourFromDate'
 
-const getLogs = (state) => state.logs.logs
+const getLogs = (state) => state.logs.logs.reverse()
 
 export const getPrettifiedLogs = createSelector(
   [ getLogs ],

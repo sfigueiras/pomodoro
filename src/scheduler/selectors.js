@@ -10,4 +10,9 @@ export const getCurrentUnit = createSelector(
   }
 )
 
-
+export const getNextUnit = createSelector(
+  [ getSchedule, getScheduleIndex ],
+  (schedule, index) => {
+    return schedule[index]
+  }
+)

@@ -1,4 +1,4 @@
-import { CREATE_LOG, UPDATE_LOG, CLEAR_ALL_LOGS } from './actionTypes'
+  import { CREATE_LOG, UPDATE_LOG, CLEAR_ALL_LOGS } from './actionTypes'
 
 export const createLog = ({timerType, time}) => ({
   type: CREATE_LOG,

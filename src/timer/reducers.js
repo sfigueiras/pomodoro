@@ -17,10 +17,7 @@ export const timer = (state = {
     case TIMER_STARTED:
       return {
         ...state,
-        time: action.time || state.time,
-        timerType: action.timerType,
         active: true,
-        ticks: 0,
       }
     case TIMER_PAUSED:
       return {
@@ -35,7 +32,6 @@ export const timer = (state = {
     case TIMER_FINISHED:
       return {
         ...state,
-        active: action.active
       }
     case TIMER_RESTARTED:
       return {
@@ -50,7 +46,8 @@ export const timer = (state = {
     case TIMER_INITIALIZED:
       return {
         ...state,
-        ...action
+        ...action,
+        ticks: 0
       }
     default:
       return state
