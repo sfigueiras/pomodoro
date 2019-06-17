@@ -1,5 +1,6 @@
 .container {
   padding: 10px;
+  border-bottom: 1px dashed #333;
 }
 
 .info {
@@ -11,6 +12,5 @@
 
 .description {
   width: 100%;
-  background-color: #eee;
   padding: 5px;
 }

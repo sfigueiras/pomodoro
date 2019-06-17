@@ -8,10 +8,16 @@ import {
   TIMER_INITIALIZED
 } from './actionTypes' 
 
+import {
+  SKIP_UNIT,
+  NEXT_UNIT,
+  PREVIOUS_UNIT
+} from '../scheduler/actionTypes'
+
 export const timer = (state = {
   active: false,
   ticks: 0,
-  time: 0
+  time: -1
 }, action) => {
   switch(action.type) {
     case TIMER_STARTED:
@@ -23,11 +29,6 @@ export const timer = (state = {
       return {
         ...state,
         active: false
-      }
-    case TIMER_RESUMED:
-      return {
-        ...state,
-        active: true
       }
     case TIMER_FINISHED:
       return {
@@ -46,8 +47,22 @@ export const timer = (state = {
     case TIMER_INITIALIZED:
       return {
         ...state,
-        ...action,
-        ticks: 0
+        ...action
+      }
+    case SKIP_UNIT:
+      return {
+        ...state,
+        time: action.time,
+      }
+    case NEXT_UNIT:
+      return {
+        ...state,
+        time: action.time
+      }
+    case PREVIOUS_UNIT:
+      return {
+        ...state,
+        time: action.time
       }
     default:
       return state

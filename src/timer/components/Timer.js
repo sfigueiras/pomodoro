@@ -8,14 +8,16 @@ class Timer extends React.Component {
   }
 
   render () {
-    const { timerActive, onToggle, onRestart, time } = this.props
+    const { timerActive, onToggle, onRestart, time, onNext, onPrevious } = this.props
     return (
       <div className={styles.container}>
         <div className={styles.timer}>
           <p className={styles.time}>{ time }</p>
           <div className={styles.commands}>
+            <i onClick={onPrevious} className="fas fa-step-backward" />
             <i onClick={onToggle} className={ 'fas ' + (timerActive ? 'fa-pause' : 'fa-play')  } />
             <i onClick={onRestart} className="fas fa-undo-alt" />
+            <i onClick={onNext} className="fas fa-step-forward" />
           </div>
         </div>
       </div>

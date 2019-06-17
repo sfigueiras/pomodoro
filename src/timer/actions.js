@@ -23,10 +23,6 @@ export const timerPaused = () => ({
   type: actionTypes.TIMER_PAUSED
 })
 
-export const timerResumed = () => ({
-  type: actionTypes.TIMER_RESUMED
-})
-
 export const timerInitialized = (timerSettings) => ({
   type: actionTypes.TIMER_INITIALIZED,
   ...timerSettings
@@ -43,10 +39,18 @@ let timerInterval = null
 
 export const initializeTimer = timerSettings => (dispatch, getState) => {
   const { time, active, ticks } = getState().timer
+
+  // If there is a persisted time, but is finished initialize
+  // time with the next unit
   const timerFinished = ticks * 1000 === time
-  if (timerFinished) {
-    dispatch(timerInitialized({ ...getNextUnit(getState()), ticks: 0 }))
-    console.log('initializing timer with ' + getCurrentUnit(getState()))
+  const timerNotInitialized = time === -1
+
+  const state = getState()
+
+  if (timerNotInitialized) {
+    dispatch(timerInitialized(getCurrentUnit(state)))
+  } else if (timerFinished) {
+    dispatch(timerInitialized(getNextUnit(state)))
   }
 
   if (active) {
@@ -59,11 +63,6 @@ export const startTimer = () => (dispatch, getState) => {
 
   dispatch(timerStarted())
   dispatch(timerTickIfNeeded())
-}
-
-export const resumeTimer = () => dispatch => {
-  startTicking(() => dispatch(timerTickIfNeeded()))
-  dispatch(timerResumed())
 }
 
 export const pauseTimer = () => dispatch => {
@@ -85,7 +84,7 @@ export const toggleTimer = () => (dispatch, getState) => {
   if (active) {
     dispatch(pauseTimer())
   } else {
-    dispatch(resumeTimer())
+    dispatch(startTimer())
   }
 }
 

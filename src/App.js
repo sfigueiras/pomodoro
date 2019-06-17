@@ -6,6 +6,7 @@ import './App.css';
 import TimerContainer from './timer/components/TimerContainer'
 import { initializeTimer } from './timer/actions'
 import LogContainer from './logs/components/LogContainer'
+import ScheduleContainer from './scheduler/components/ScheludeContainer'
 
 class App extends React.Component {
   componentDidMount () {
@@ -16,6 +17,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <TimerContainer />
+        <div className="schedule">
+          <ScheduleContainer />
+        </div>
         <LogContainer />
       </div>
     );

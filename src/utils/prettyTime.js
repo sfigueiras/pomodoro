@@ -1,6 +1,6 @@
 
 
-  export default function prettyTime (timeInMillis) {
+  export default function prettyTime (timeInMillis, onlyMinutes=false) {
     const minuteInMillis = 1000 * 60
     const secondInMillis = 1000
 
@@ -8,7 +8,7 @@
       parseInt(timeInMillis / minuteInMillis) :
       0
     const seconds = parseInt(timeInMillis - (minutes * minuteInMillis)) / secondInMillis
-    return `${addLeadingZeros(minutes)}:${addLeadingZeros(seconds)}`
+    return addLeadingZeros(minutes) + (onlyMinutes ? '\'' : `:${addLeadingZeros(seconds)}`)
   }
 
   export function addLeadingZeros (number, unit=1) {

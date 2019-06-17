@@ -7,6 +7,7 @@ class LogItem extends Component {
       id,
       time,
       timerType,
+      showDescription,
       hour,
       description,
       onUpdate
@@ -18,10 +19,13 @@ class LogItem extends Component {
           <p>{ hour }</p>
           <p>{ timerType }</p>
         </div>
-        <input name="description" className={styles.description} defaultValue={description} data-id={id} ref={description} onBlur={onUpdate} placeholder="Description"/>
+        { showDescription &&
+          <textarea name="description" className={styles.description} defaultValue={description} data-id={id} ref={description} onBlur={onUpdate} placeholder="Description"/>
+        }
       </li>
     )
   }
 }
+
 
 export default LogItem

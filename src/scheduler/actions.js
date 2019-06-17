@@ -1,20 +1,49 @@
-import { NEXT_UNIT } from './actionTypes'
-import { getCurrentUnit } from './selectors'
+import { NEXT_UNIT, SKIP_UNIT, PREVIOUS_UNIT } from './actionTypes'
+import { getCurrentUnit, getNextUnit, getPreviousUnit } from './selectors'
 import { createLog } from '../logs/actions'
-import { initializeTimer } from '../timer/actions'
+import { timerRestarted, initializeTimer } from '../timer/actions'
 
 export const nextUnit = () => (dispatch, getState) => {
   const currentEntry = getCurrentUnit(getState())
 
   dispatch({
-    type: NEXT_UNIT
+    type: NEXT_UNIT,
+    ...currentEntry
   })
 
   dispatch(
-    initializeTimer(currentEntry)
+    createLog(currentEntry)
   )
+
+  dispatch(
+    timerRestarted()
+  )
+}
+
+
+export const skipUnit  = () => (dispatch, getState) => {
+  const nextUnit = getNextUnit(getState())
+
+  dispatch({
+    type: SKIP_UNIT,
+    ...nextUnit
+  })
   
   dispatch(
-    createLog(currentEntry)
+    timerRestarted()
+  )
+}
+
+
+export const previousUnit  = () => (dispatch, getState) => {
+  const previousUnit = getPreviousUnit(getState())
+
+  dispatch({
+    type: PREVIOUS_UNIT,
+    ...previousUnit
+  })
+  
+  dispatch(
+    timerRestarted()
   )
 }

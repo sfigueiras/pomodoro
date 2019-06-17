@@ -13,12 +13,12 @@ export const logs = (state = {
       
       return {
         logs: [
-          ...state.logs,
           {
             id: uuidv4(),
             ...log,
             completedAt: Date.now()
-          }
+          },
+          ...state.logs
         ]
       }
     case UPDATE_LOG:

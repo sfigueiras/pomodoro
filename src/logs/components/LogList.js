@@ -27,6 +27,7 @@ function LogsList (props) {
                         key={log.id}
                         hour={log.hour}
                         timerType={log.prettyTimerType}
+                        showDescription={log.showDescription}
                         completedAt={log.completedAt}
                         description={log.description}
                         onUpdate={onLogUpdated} />
@@ -40,6 +41,8 @@ function LogsList (props) {
       </ul>
     </div>
   )
+
+
 }
 
 LogsList.propTypes = {
