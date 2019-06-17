@@ -12,7 +12,6 @@ class ScheduleContainer extends Component {
 
     return (
       <div>
-        <h4>Schedule</h4>
         <ScheludeList
           schedule={schedule}
           currentIndex={index} />

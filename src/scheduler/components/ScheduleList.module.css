@@ -1,7 +1,17 @@
 .container {
+  text-align: center;
+}
+
+.list {
   text-align: left;
 }
 
 .current {
   font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  .container {
+    display: none;
+  }
 }

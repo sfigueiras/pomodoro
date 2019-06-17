@@ -10,21 +10,24 @@ class ScheduleList extends Component {
     } = this.props
 
     return (
-      <ul className={styles.container}>
-        { 
-          schedule.map((unit, index) => {
-            return (
-              <li key={index} className={
-                index === currentIndex
-                  ? styles.current
-                  : ''
-              }>
-                { unit.prettyTime } { unit.prettyTimerType }
-              </li>
-            )
-          })
-        }
-      </ul>
+      <div className={styles.container}>
+        <h4>Schedule</h4>
+        <ul className={styles.list}>
+          { 
+            schedule.map((unit, index) => {
+              return (
+                <li key={index} className={
+                  index === currentIndex
+                    ? styles.current
+                    : ''
+                }>
+                  { unit.prettyTime } { unit.prettyTimerType }
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
     )
   }
 
