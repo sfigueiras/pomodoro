@@ -8,6 +8,7 @@ import { initializeTimer } from './timer/actions'
 import LogContainer from './logs/components/LogContainer'
 import ScheduleContainer from './scheduler/components/ScheludeContainer'
 import StatsContainer from './stats/components/StatsContainer'
+import ObjectiveContainer from './objective/components/ObjectiveContainer'
 
 class App extends React.Component {
   componentDidMount () {
@@ -17,6 +18,9 @@ class App extends React.Component {
   render () {
     return (
       <div className="App">
+        <div className="objective">
+          <ObjectiveContainer />
+        </div>
         <TimerContainer />
         <div className="stats">
           <StatsContainer />
@@ -32,10 +36,8 @@ class App extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    initializeTimer: () => dispatch(initializeTimer())
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  initializeTimer: () => dispatch(initializeTimer())
+})
 
 export default connect(null, mapDispatchToProps) (App)
