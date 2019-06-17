@@ -26,7 +26,8 @@ class StatsContainer extends Component {
     return (
       <div>
         <FocusedTimeToday
-          time={focusedTimeToday}
+          time={focusedTimeToday.time}
+          prettyTime={focusedTimeToday.prettyTime}
         />
         { showMore
           ? <div>
