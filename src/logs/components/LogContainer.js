@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LogsList from './LogList'
 import { updateLog, clearAll } from '../actions'
-import { getPrettifiedLogs, getGroupedByDateLogs } from '../selectors'
+import { getGroupedByDateLogs } from '../selectors'
 
 class LogsContainer extends Component {
   onLogUpdated (event) {

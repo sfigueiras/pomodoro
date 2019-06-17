@@ -14,6 +14,6 @@ export default function formatDate(dateStr) {
   return day + ' ' + monthNames[monthIndex]
 }
 
-export function today () {
+export function todayPretty () {
   return formatDate(Date.now())
 }
