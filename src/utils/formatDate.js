@@ -13,3 +13,7 @@ export default function formatDate(dateStr) {
 
   return day + ' ' + monthNames[monthIndex]
 }
+
+export function today () {
+  return formatDate(Date.now())
+}
