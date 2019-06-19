@@ -6,14 +6,14 @@ import { timerRestarted, initializeTimer } from '../timer/actions'
 export const nextUnit = () => (dispatch, getState) => {
   const currentEntry = getCurrentUnit(getState())
 
-  dispatch({
-    type: NEXT_UNIT,
-    ...currentEntry
-  })
-
   dispatch(
     createLog(currentEntry)
   )
+  
+  dispatch({
+    type: NEXT_UNIT,
+    ...getNextUnit(getState())
+  })
 
   dispatch(
     timerRestarted()
