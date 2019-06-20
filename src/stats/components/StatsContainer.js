@@ -1,39 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getFocusedTimeToday } from '../selectors'
+import { getFocusedTimeTodayPretty } from '../selectors'
+import { isOnBreak } from '../../scheduler/selectors'
 import FocusedTimeToday from './FocusedTimeToday'
+import BreakSuggestions from './BreakSuggestions'
 
 class StatsContainer extends Component {
-  constructor (props) {
-    super(props)
-    
-    this.onShowMoreClick = this.onShowMoreClick.bind(this)
-    this.state = {
-      showMore: false
-    }
-  }
-
-  onShowMoreClick () {
-    this.setState({
-      showMore: !this.showMore
-    })
-  }
-
   render () {
-    const { focusedTimeToday } = this.props
-    const { showMore } = this.state
+    const {
+      isOnBreak
+    } = this.props
+
+    const {
+      time,
+      prettyTime
+    } = this.props.focusedTimeToday
 
     return (
       <div>
-        <FocusedTimeToday
-          time={focusedTimeToday.time}
-          prettyTime={focusedTimeToday.prettyTime}
-        />
-        { showMore
-          ? <div>
-              <i onClick={this.onShowMoreClick}>show less...</i>
-            </div>
-          : <i onClick={this.onShowMoreClick}>see more...</i>
+        {isOnBreak
+          ? <BreakSuggestions />
+          : time > 0 &&
+          <FocusedTimeToday
+            time={time}
+            prettyTime={prettyTime}
+          />
         }
       </div>
     )
@@ -41,7 +32,8 @@ class StatsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  focusedTimeToday: getFocusedTimeToday(state)
+  focusedTimeToday: getFocusedTimeTodayPretty(state),
+  isOnBreak: isOnBreak(state)
 })
 
 export default connect (mapStateToProps) (StatsContainer)
