@@ -7,7 +7,7 @@ export const objective = (state = {
     case OBJECTIVE_UPDATED:
       return {
         ...state,
-        objective: action.newObjective
+        value: action.newObjective
       }
     default:
       return state

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { updateObjective } from '../actions'
+import Objective from './Objective'
 
 class ObjectiveContainer extends Component {
   render () {
     const { objective, handleChange } = this.props
     return (
-      <div>
-        <label> Objective for today:</label>
-        <input type="number" value={objective} onChange={handleChange} />
-      </div>
+      <Objective
+        objective={objective}
+        handleChange={handleChange}
+        />
     )
   }
 }
@@ -19,7 +20,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleChange: (objective) => dispatch(updateObjective(objective))
+  handleChange: (event) => dispatch(updateObjective(parseInt(event.target.value)))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps) (ObjectiveContainer)
