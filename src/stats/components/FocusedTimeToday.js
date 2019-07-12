@@ -1,10 +1,10 @@
 import React from 'react'
 
 function FocusedTimeToday (props) {
-  const { time } = props
+  const { prettyTime } = props
 
   return (
-    <p><b>{time}</b> focused minutes done today, keep on!</p>
+    <p><b>{prettyTime}</b> focused minutes done today, keep on!</p>
   )
 }
 

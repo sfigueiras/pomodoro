@@ -18,10 +18,20 @@ body {
   right: 10vw;
 }
 
+.App .logs {
+  border: 1px solid;
+}
+
 .App .logs,
 .App .stats {
   padding: 20px;
   margin: 0 10%;
+}
+
+.App .objective {
+  position: absolute;
+  top: 20px;
+  left: 10vw;
 }
 
 @media (min-width: 800px) {

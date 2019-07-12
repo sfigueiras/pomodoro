@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 import prettyTime  from '../utils/prettyTime'
 import capitalize from '../utils/capitalize'
+import { PAUSE } from '../timer/timerTypes'
 
 const getSchedule = (state) => state.scheduler.schedule
 const getScheduleIndex = (state) => state.scheduler.index
@@ -37,4 +38,9 @@ export const getPrettySchedule = createSelector(
       }
     })
   }
+)
+
+export const isOnBreak = createSelector(
+  [ getCurrentUnit ],
+  unit => unit.timerType === PAUSE
 )

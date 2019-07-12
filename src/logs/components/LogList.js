@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import LogItem from './LogItem'
 import styles from './LogList.module.css'
 import mapOnObject from '../../utils/mapOnObject'
@@ -17,7 +16,7 @@ function LogsList (props) {
         { 
           mapOnObject(groupedLogs, (date, logs) => {
             return (
-              <div>
+              <div key={date}>
                 <h5>{ date }</h5>
                 { 
                   logs.map(log => {
@@ -43,10 +42,6 @@ function LogsList (props) {
   )
 
 
-}
-
-LogsList.propTypes = {
-  logs: PropTypes.array.isRequired
 }
 
 export default LogsList

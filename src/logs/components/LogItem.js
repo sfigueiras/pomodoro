@@ -5,7 +5,6 @@ class LogItem extends Component {
   render () {
     const {
       id,
-      time,
       timerType,
       showDescription,
       hour,
