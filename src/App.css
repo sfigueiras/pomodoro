@@ -4,6 +4,10 @@
   font-family: 'IBM Plex Mono', monospace;
 }
 
+body {
+  background-color: antiquewhite;
+}
+
 .App {
   text-align: center;
 }
@@ -64,6 +68,6 @@ ul {
 
 textarea {
   border: none;
-  background-color: #f7f7f7;
+  background-color: #fff5e7;
   box-sizing: border-box;
 }
