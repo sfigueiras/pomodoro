@@ -14,6 +14,6 @@ export const getFocusedTimeTodayPretty = createSelector(
   [ getFocusedTimeToday ],
   time => ({
     time,
-    prettyTime: prettyTime(time)
+    prettyTime: prettyTime(time, false, true)
   })
 )

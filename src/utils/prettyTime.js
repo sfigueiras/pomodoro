@@ -1,12 +1,30 @@
-export default function prettyTime (timeInMillis, onlyMinutes=false) {
-  const minuteInMillis = 1000 * 60
+export default function prettyTime (
+    timeInMillis,
+    onlyMinutes=false,
+    includeHours=false
+) {
+  includeHours && console.log(timeInMillis)
+  if (includeHours) debugger
   const secondInMillis = 1000
+  const minuteInMillis = secondInMillis * 60
+  const hourInMillis = minuteInMillis * 60
 
-  const minutes = timeInMillis >= minuteInMillis
-    ? parseInt(timeInMillis / minuteInMillis)
+  const hours = timeInMillis >= hourInMillis
+    ? parseInt(timeInMillis / hourInMillis)
     : 0
-  const seconds = parseInt(timeInMillis - (minutes * minuteInMillis)) / secondInMillis
-  return addLeadingZeros(minutes) + (onlyMinutes ? '\'' : `:${addLeadingZeros(seconds)}`)
+
+  let remainingMillis = (timeInMillis - (hours * hourInMillis))
+
+  const minutes = remainingMillis >= minuteInMillis
+    ? parseInt(remainingMillis / minuteInMillis)
+    : 0
+
+  remainingMillis = remainingMillis - (minutes * minuteInMillis)
+
+  const seconds = parseInt(remainingMillis / secondInMillis)
+  return (includeHours ? `${hours}:` : '') +
+      addLeadingZeros(minutes) +
+      (onlyMinutes ? '\'' : `:${addLeadingZeros(seconds)}`)
 }
 
 export function addLeadingZeros (number, unit=1) {
