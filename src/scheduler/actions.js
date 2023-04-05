@@ -1,49 +1,39 @@
-import { NEXT_UNIT, SKIP_UNIT, PREVIOUS_UNIT } from './actionTypes'
-import { getCurrentUnit, getNextUnit, getPreviousUnit } from './selectors'
-import { createLog } from '../logs/actions'
-import { timerRestarted } from '../timer/actions'
+import { NEXT_UNIT, SKIP_UNIT, PREVIOUS_UNIT } from './actionTypes';
+import { getCurrentUnit, getNextUnit, getPreviousUnit } from './selectors';
+import { createLog } from '../logs/actions';
+import { timerRestarted } from '../timer/actions';
 
 export const nextUnit = () => (dispatch, getState) => {
-  const currentEntry = getCurrentUnit(getState())
+  const currentEntry = getCurrentUnit(getState());
 
-  dispatch(
-    createLog(currentEntry)
-  )
-  
+  dispatch(createLog(currentEntry));
+
   dispatch({
     type: NEXT_UNIT,
-    ...getNextUnit(getState())
-  })
+    ...getNextUnit(getState()),
+  });
 
-  dispatch(
-    timerRestarted()
-  )
-}
+  dispatch(timerRestarted());
+};
 
-
-export const skipUnit  = () => (dispatch, getState) => {
-  const nextUnit = getNextUnit(getState())
+export const skipUnit = () => (dispatch, getState) => {
+  const nextUnit = getNextUnit(getState());
 
   dispatch({
     type: SKIP_UNIT,
-    ...nextUnit
-  })
-  
-  dispatch(
-    timerRestarted()
-  )
-}
+    ...nextUnit,
+  });
 
+  dispatch(timerRestarted());
+};
 
-export const previousUnit  = () => (dispatch, getState) => {
-  const previousUnit = getPreviousUnit(getState())
+export const previousUnit = () => (dispatch, getState) => {
+  const previousUnit = getPreviousUnit(getState());
 
   dispatch({
     type: PREVIOUS_UNIT,
-    ...previousUnit
-  })
-  
-  dispatch(
-    timerRestarted()
-  )
-}
+    ...previousUnit,
+  });
+
+  dispatch(timerRestarted());
+};

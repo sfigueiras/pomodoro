@@ -20,10 +20,9 @@
   color: firebrick;
   padding: 5px;
   cursor: pointer;
-  transition: .3s linear;
+  transition: 0.3s linear;
 }
 
 .actions button:active {
   transform: translateX(10px) translateY(10px);
 }
-

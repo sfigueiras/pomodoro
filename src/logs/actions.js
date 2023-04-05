@@ -1,18 +1,18 @@
-  import { CREATE_LOG, UPDATE_LOG, CLEAR_ALL_LOGS } from './actionTypes'
+import { CREATE_LOG, UPDATE_LOG, CLEAR_ALL_LOGS } from './actionTypes';
 
-export const createLog = ({timerType, time}) => ({
+export const createLog = ({ timerType, time }) => ({
   type: CREATE_LOG,
   log: {
     timerType,
-    time
-  }
-})
+    time,
+  },
+});
 
-export const updateLog = (log) => ({
+export const updateLog = log => ({
   type: UPDATE_LOG,
-  log
-})
+  log,
+});
 
 export const clearAll = () => ({
-  type: CLEAR_ALL_LOGS
-})
+  type: CLEAR_ALL_LOGS,
+});

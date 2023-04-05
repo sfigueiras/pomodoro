@@ -1,24 +1,24 @@
-import React from 'react'
-import Timer from './Timer'
-import { connect } from 'react-redux'
-import { toggleTimer, timerRestarted } from '../actions'
-import { skipUnit, previousUnit } from '../../scheduler/actions'
-import { getElapsedPrettyTime } from '../selectors'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Timer from './Timer';
+import { connect } from 'react-redux';
+import { toggleTimer, timerRestarted } from '../actions';
+import { skipUnit, previousUnit } from '../../scheduler/actions';
+import { getElapsedPrettyTime } from '../selectors';
+import PropTypes from 'prop-types';
 
 class TimerContainer extends React.Component {
-  render () { 
-    const { 
-      timerActive, 
-      time, 
-      onTimerToggled, 
+  render() {
+    const {
+      timerActive,
+      time,
+      onTimerToggled,
       onTimerRestart,
       onTimerSkip,
-      onTimerPrevious
-    } = this.props
+      onTimerPrevious,
+    } = this.props;
     return (
       <div>
-        <Timer 
+        <Timer
           time={time}
           timerActive={timerActive}
           onToggle={onTimerToggled}
@@ -27,34 +27,33 @@ class TimerContainer extends React.Component {
           onRestart={onTimerRestart}
         />
       </div>
-    )
+    );
   }
 }
 
 TimerContainer.propTypes = {
-  timerActive: PropTypes.bool.isRequired, 
-  time: PropTypes.string.isRequired
-}
+  timerActive: PropTypes.bool.isRequired,
+  time: PropTypes.string.isRequired,
+};
 
-const mapStateToProps = (state) => {
-  const elapsedTime = getElapsedPrettyTime(state)
+const mapStateToProps = state => {
+  const elapsedTime = getElapsedPrettyTime(state);
 
-  document.title = elapsedTime
+  document.title = elapsedTime;
 
-  return { 
+  return {
     timerActive: state.timer.active,
-    time: elapsedTime
-  }
-}
+    time: elapsedTime,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     onTimerToggled: () => dispatch(toggleTimer()),
     onTimerRestart: () => dispatch(timerRestarted()),
     onTimerSkip: () => dispatch(skipUnit()),
-    onTimerPrevious: () => dispatch(previousUnit())
-  }
-}
+    onTimerPrevious: () => dispatch(previousUnit()),
+  };
+};
 
-export default connect (mapStateToProps, mapDispatchToProps) (TimerContainer)
-
+export default connect(mapStateToProps, mapDispatchToProps)(TimerContainer);

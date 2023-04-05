@@ -1,2 +1,2 @@
-export const POMODORO = 'POMODORO'
-export const PAUSE = 'PAUSE'
+export const POMODORO = 'POMODORO';
+export const PAUSE = 'PAUSE';

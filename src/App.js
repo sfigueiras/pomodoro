@@ -1,21 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import './App.css';
 
-import TimerContainer from './timer/components/TimerContainer'
-import { initializeTimer } from './timer/actions'
-import LogContainer from './logs/components/LogContainer'
-import ScheduleContainer from './scheduler/components/ScheludeContainer'
-import StatsContainer from './stats/components/StatsContainer'
-import ObjectiveContainer from './objective/components/ObjectiveContainer'
+import TimerContainer from './timer/components/TimerContainer';
+import { initializeTimer } from './timer/actions';
+import LogContainer from './logs/components/LogContainer';
+import ScheduleContainer from './scheduler/components/ScheludeContainer';
+import StatsContainer from './stats/components/StatsContainer';
+import ObjectiveContainer from './objective/components/ObjectiveContainer';
 
 class App extends React.Component {
-  componentDidMount () {
-    this.props.initializeTimer()
+  componentDidMount() {
+    this.props.initializeTimer();
   }
 
-  render () {
+  render() {
     return (
       <div className="App">
         <div className="objective">
@@ -37,7 +37,7 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  initializeTimer: () => dispatch(initializeTimer())
-})
+  initializeTimer: () => dispatch(initializeTimer()),
+});
 
-export default connect(null, mapDispatchToProps) (App)
+export default connect(null, mapDispatchToProps)(App);

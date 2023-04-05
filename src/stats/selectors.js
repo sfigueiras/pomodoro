@@ -1,19 +1,15 @@
-import { createSelector } from 'reselect'
-import { getPomodoros } from '../logs/selectors'
-import prettyTime from '../utils/prettyTime'
+import { createSelector } from 'reselect';
+import { getPomodoros } from '../logs/selectors';
+import prettyTime from '../utils/prettyTime';
 
-export const getFocusedTimeToday = createSelector(
-  [ getPomodoros ],
-  pomodoros =>
-    pomodoros
-      .map(log => log.time)
-      .reduce((sum, time) => sum + time, 0)
-)
+export const getFocusedTimeToday = createSelector([getPomodoros], pomodoros =>
+  pomodoros.map(log => log.time).reduce((sum, time) => sum + time, 0),
+);
 
 export const getFocusedTimeTodayPretty = createSelector(
-  [ getFocusedTimeToday ],
+  [getFocusedTimeToday],
   time => ({
     time,
-    prettyTime: prettyTime(time, false, true)
-  })
-)
+    prettyTime: prettyTime(time, false, true),
+  }),
+);

@@ -1,6 +1,6 @@
-import { OBJECTIVE_UPDATED } from './actionTypes'
+import { OBJECTIVE_UPDATED } from './actionTypes';
 
-export const updateObjective = (newObjective) => ({
+export const updateObjective = newObjective => ({
   type: OBJECTIVE_UPDATED,
-  newObjective
-})
+  newObjective,
+});

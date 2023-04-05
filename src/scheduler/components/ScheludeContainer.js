@@ -1,28 +1,23 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import ScheludeList from './ScheduleList'
-import { getPrettySchedule } from '../selectors'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ScheludeList from './ScheduleList';
+import { getPrettySchedule } from '../selectors';
 
 class ScheduleContainer extends Component {
-  render () {
-    const {
-      schedule,
-      index
-    } = this.props
+  render() {
+    const { schedule, index } = this.props;
 
     return (
       <div>
-        <ScheludeList
-          schedule={schedule}
-          currentIndex={index} />
+        <ScheludeList schedule={schedule} currentIndex={index} />
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   schedule: getPrettySchedule(state),
-  index: state.scheduler.index
-})
+  index: state.scheduler.index,
+});
 
-export default connect(mapStateToProps) (ScheduleContainer)
+export default connect(mapStateToProps)(ScheduleContainer);
