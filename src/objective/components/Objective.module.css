@@ -1,4 +1,12 @@
-.objective {
+.progress {
+  align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 15px;
+  max-width: 100%;
+}
+
+.progressItem {
+  flex-basis: 25%;
 }

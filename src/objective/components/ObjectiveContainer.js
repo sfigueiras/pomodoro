@@ -9,8 +9,6 @@ class ObjectiveContainer extends Component {
   render() {
     const { handleChange, objective, pomodoros } = this.props;
 
-    console.log(pomodoros);
-
     return (
       <Objective
         pomodoros={pomodoros.length}

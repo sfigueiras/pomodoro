@@ -3,7 +3,7 @@ import styles from './Objective.module.css';
 
 const Objective = props => (
   <div className={styles.objective}>
-    <label> Objective for today:</label>
+    <h4>Objective</h4>
 
     <input
       type="number"
@@ -11,12 +11,15 @@ const Objective = props => (
       onChange={props.handleChange}
     />
 
-    <br />
-
-    <div>
+    <div className={styles.progress}>
       {Array.from({ length: props.objective }, (_, index) => (
-        <span key={index}>
-          {props.pomodoros > index ? index + 1 : '-'}&nbsp;
+        <span key={index} className={styles.progressItem}>
+          {props.pomodoros > index
+            ? index + 1
+            : props.pomodoros === index
+            ? 'X'
+            : '-'}
+          &nbsp;
         </span>
       ))}
     </div>

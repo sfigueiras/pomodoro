@@ -10,12 +10,25 @@ body {
 
 .App {
   text-align: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
-.App .schedule {
-  position: absolute;
-  top: 20px;
-  right: 10vw;
+.App .objective, .App .schedule {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 200px;
+  flex-grow: 0;
+}
+
+.App .main-content {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 450p;
+  flex-grow: 0;
 }
 
 .App .logs {
@@ -25,19 +38,11 @@ body {
 .App .logs,
 .App .stats {
   padding: 20px;
-  margin: 0 10%;
-}
-
-.App .objective {
-  position: absolute;
-  top: 20px;
-  left: 10vw;
 }
 
 @media (min-width: 800px) {
-  .App .logs,
-  .App .stats {
-    margin: 0 30vw;
+  .App {
+    max-width: 100%;
   }
 }
 

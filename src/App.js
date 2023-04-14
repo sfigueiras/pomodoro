@@ -21,15 +21,19 @@ class App extends React.Component {
         <div className="objective">
           <ObjectiveContainer />
         </div>
-        <TimerContainer />
-        <div className="stats">
-          <StatsContainer />
+
+        <div className="main-content">
+          <TimerContainer />
+          <div className="stats">
+            <StatsContainer />
+          </div>
+          <div className="logs">
+            <LogContainer />
+          </div>
         </div>
+
         <div className="schedule">
           <ScheduleContainer />
-        </div>
-        <div className="logs">
-          <LogContainer />
         </div>
       </div>
     );

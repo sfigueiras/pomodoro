@@ -4,6 +4,7 @@ import { getFocusedTimeTodayPretty } from '../selectors';
 import { isOnBreak } from '../../scheduler/selectors';
 import FocusedTimeToday from './FocusedTimeToday';
 import BreakSuggestions from './BreakSuggestions';
+import styles from './StatsContainer.module.css';
 
 class StatsContainer extends Component {
   render() {
@@ -12,7 +13,7 @@ class StatsContainer extends Component {
     const { time, prettyTime } = this.props.focusedTimeToday;
 
     return (
-      <div>
+      <div className={styles.stats}>
         {isOnBreak ? (
           <BreakSuggestions />
         ) : (
