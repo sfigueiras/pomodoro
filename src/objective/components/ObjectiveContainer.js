@@ -2,16 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateObjective } from '../actions';
 import Objective from './Objective';
+import { getPomodoros } from '../../logs/selectors';
 
 class ObjectiveContainer extends Component {
+  const;
   render() {
-    const { objective, handleChange } = this.props;
-    return <Objective objective={objective} handleChange={handleChange} />;
+    const { handleChange, objective, pomodoros } = this.props;
+
+    console.log(pomodoros);
+
+    return (
+      <Objective
+        pomodoros={pomodoros.length}
+        objective={objective}
+        handleChange={handleChange}
+      />
+    );
   }
 }
 
 const mapStateToProps = state => ({
   objective: state.objective.value,
+  pomodoros: getPomodoros(state),
 });
 
 const mapDispatchToProps = dispatch => ({
