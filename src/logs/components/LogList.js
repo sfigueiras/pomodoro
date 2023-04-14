@@ -23,6 +23,7 @@ function LogsList(props) {
                     id={log.id}
                     key={log.id}
                     hour={log.hour}
+                    time={log.prettyTime}
                     timerType={log.prettyTimerType}
                     showDescription={log.showDescription}
                     completedAt={log.completedAt}

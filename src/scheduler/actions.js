@@ -1,5 +1,6 @@
 import { NEXT_UNIT, SKIP_UNIT, PREVIOUS_UNIT } from './actionTypes';
 import { getCurrentUnit, getNextUnit, getPreviousUnit } from './selectors';
+import { getElapsedTime } from '../timer/selectors';
 import { createLog } from '../logs/actions';
 import { timerRestarted } from '../timer/actions';
 
@@ -17,6 +18,16 @@ export const nextUnit = () => (dispatch, getState) => {
 };
 
 export const skipUnit = () => (dispatch, getState) => {
+  /**
+   * Log also unfinished items.
+   */
+  const currentEntry = getCurrentUnit(getState());
+  const elapsedTime = getElapsedTime(getState());
+
+  dispatch(
+    createLog({ ...currentEntry, time: currentEntry.time - elapsedTime }),
+  );
+
   const nextUnit = getNextUnit(getState());
 
   dispatch({
